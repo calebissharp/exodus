@@ -1,0 +1,8 @@
+{
+  "name": "exodus",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:calebissharp/exodus.git",
+  "author": "Caleb Sharp <epicsharp11@gmail.com>",
+  "license": "MIT"
+}

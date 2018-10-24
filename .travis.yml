@@ -1,0 +1,23 @@
+language: node_js
+nodejs:
+  - 10.12.0
+addons:
+  sshknownhosts:
+    - 142.93.48.135
+branches:
+  only:
+    - master
+env:
+  global:
+    - REMOTEAPPDIR=/var/www/MYDOMAIN.COM/
+    - REMOTEUSER=deploy
+    - REMOTEHOST=142.93.48.135
+    - PORT=8080
+install:
+  - yarn
+beforescript:
+  - chmod 600 deploy && mv deploy ~/.ssh/idrsa
+script:
+  - yarn test
+after_success:
+  - "./scripts/deploy.sh"
