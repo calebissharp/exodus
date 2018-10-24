@@ -3,7 +3,7 @@ const client = new Discord.Client()
 
 const warningList = []
 
-const bannedPhrases = ['😂']
+const bannedPhrases = ['😂', '😹', '😳', '😅', '🤣', '😆']
 
 const punishedRole = '504680985867190274'
 
