@@ -1,25 +1,32 @@
 language: node_js
 nodejs:
-- 10.12.0
+  - 10.12.0
 addons:
   sshknownhosts:
-  - 142.93.48.135
+    - exodus.calebissharp.com
 env:
   global:
-  - REMOTEAPPDIR=/var/www/exodus.calebissharp.com/
-  - REMOTEUSER=deploy
-  - REMOTEHOST=142.93.48.135
-  - PORT=80
+    - REMOTEAPPDIR=/var/www/exodus.calebissharp.com/
+    - REMOTEUSER=deploy
+    - REMOTEHOST=142.93.48.135
+    - PORT=80
 install:
-- yarn
+  - yarn
 script:
-- yarn test
+  - yarn test
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_<...>_key -iv $encrypted_<...>_iv -in deploy_rsa.enc -out /tmp/deploy_rsa -d
+  - eval "$(ssh-agent -s)"
+  - chmod 600 /tmp/deploy_rsa
+  - ssh-add /tmp/deploy_rsa
 deploy:
   provider: script
-  script: ssh deploy@DROPLET_IP 'cd exodus/; git checkout master; git pull; yarn;
+  skip_cleanup: true
+  script:
+    ssh deploy@DROPLET_IP 'cd exodus/; git checkout master; git pull; yarn;
     yarn restart;'
   on:
     branche: master
 before_install:
-- openssl aes-256-cbc -K $encrypted_f6534a27c58f_key -iv $encrypted_f6534a27c58f_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
+  - openssl aes-256-cbc -K $encrypted_f6534a27c58f_key -iv $encrypted_f6534a27c58f_iv
+    -in deploy_rsa.enc -out deploy_rsa -d
