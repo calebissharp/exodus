@@ -2,6 +2,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 
 const warningList = []
+const whitelist = ['226034667160076290', '163852734230036480']
 
 const bannedPhrases = ['😂', '😹', '😳', '😅', '🤣', '😆']
 
@@ -29,7 +30,7 @@ const filterMessage = msg => {
 }
 
 client.on('message', msg => {
-  if (msg.author.bot) {
+  if (msg.author.bot || whitelist.includes(msg.author.id)) {
     return
   }
 
