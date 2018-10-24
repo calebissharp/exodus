@@ -14,19 +14,16 @@ client.on('ready', () => {
 const filterMessage = msg => {
   bannedPhrases.map(phrase => {
     if (msg.content.includes(phrase)) {
-      if (warningList.includes(msg.author)) {
-        msg.reply('Again?')
-      } else {
-        msg.reply(
-          `You have been punished for saying '${phrase}'. Your punishment will end in 5 minutes`
-        )
-        warningList.push(msg.author)
-        msg.member.addRole(punishedRole)
-        setTimeout(() => {
-          msg.member.removeRole(punishedRole)
-          console.log(`Punished rank removed from ${msg.author.username}`)
-        }, 300000)
-      }
+      msg.reply(
+        `You have been punished for saying '${phrase}'. Your punishment will end in 5 minutes`
+      )
+
+      warningList.push(msg.author)
+      msg.member.addRole(punishedRole)
+      setTimeout(() => {
+        msg.member.removeRole(punishedRole)
+        console.log(`Punished rank removed from ${msg.author.username}`)
+      }, 300000)
     }
   })
 }
