@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "git@github.com:calebissharp/exodus.git",
   "author": "Caleb Sharp <epicsharp11@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  }
 }
