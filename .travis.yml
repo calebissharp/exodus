@@ -1,20 +1,23 @@
 language: node_js
 nodejs:
-  - 10.12.0
+- 10.12.0
 addons:
   sshknownhosts:
-    - 142.93.48.135
+  - 142.93.48.135
 env:
   global:
-    - REMOTEAPPDIR=/var/www/MYDOMAIN.COM/
-    - REMOTEUSER=deploy
-    - REMOTEHOST=142.93.48.135
-    - PORT=8080
+  - REMOTEAPPDIR=/var/www/MYDOMAIN.COM/
+  - REMOTEUSER=deploy
+  - REMOTEHOST=142.93.48.135
+  - PORT=8080
 install:
-  - yarn
+- yarn
 beforescript:
-  - chmod 600 deploy && mv deploy ~/.ssh/idrsa
+- chmod 600 deploy && mv deploy ~/.ssh/idrsa
 script:
-  - yarn test
+- yarn test
 after_success:
-  - "./scripts/deploy.sh"
+- "./scripts/deploy.sh"
+before_install:
+- openssl aes-256-cbc -K $encrypted_f6534a27c58f_key -iv $encrypted_f6534a27c58f_iv
+  -in deploy.enc -out deploy -d
