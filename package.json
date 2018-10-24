@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "pm2 start index.js -i max -name=\"Exodus\"",
-    "restart": "pm2 restart all"
+    "start": "pm2 start index.js -i 0 --name exodus",
+    "restart": "pm2 reload exodus"
   },
   "dependencies": {
     "express": "^4.16.4",
