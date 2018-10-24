@@ -9,7 +9,7 @@ env:
     - REMOTEAPPDIR=/var/www/exodus.calebissharp.com/
     - REMOTEUSER=deploy
     - REMOTEHOST=142.93.48.135
-    - PORT=8080
+    - PORT=80
 install:
   - yarn
 beforescript:
