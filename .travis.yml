@@ -1,23 +1,25 @@
 language: node_js
 nodejs:
-  - 10.12.0
+- 10.12.0
 addons:
   sshknownhosts:
-    - 142.93.48.135
+  - 142.93.48.135
 env:
   global:
-    - REMOTEAPPDIR=/var/www/exodus.calebissharp.com/
-    - REMOTEUSER=deploy
-    - REMOTEHOST=142.93.48.135
-    - PORT=80
+  - REMOTEAPPDIR=/var/www/exodus.calebissharp.com/
+  - REMOTEUSER=deploy
+  - REMOTEHOST=142.93.48.135
+  - PORT=80
 install:
-  - yarn
-beforescript:
-  - chmod 600 deploy && mv deploy ~/.ssh/idrsa
+- yarn
 script:
-  - yarn test
-after_success:
-  - "./scripts/deploy.sh"
+- yarn test
+deploy:
+  provider: script
+  script: ssh deploy@DROPLET_IP 'cd exodus/; git checkout master; git pull; yarn;
+    yarn restart;'
+  on:
+    branche: master
 before_install:
-  - openssl aes-256-cbc -K $encrypted_f6534a27c58f_key -iv $encrypted_f6534a27c58f_iv
-    -in deploy.enc -out deploy -d
+- openssl aes-256-cbc -K $encrypted_f6534a27c58f_key -iv $encrypted_f6534a27c58f_iv
+  -in deploy_rsa.enc -out deploy_rsa -d
