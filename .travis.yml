@@ -23,7 +23,7 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-    ssh deploy@DROPLET_IP 'cd exodus/; git checkout master; git pull; yarn;
+    ssh deploy@exodus.calebissharp.com 'cd exodus/; git checkout master; git pull; yarn;
     yarn restart;'
   on:
     branche: master
