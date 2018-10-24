@@ -4,9 +4,6 @@ nodejs:
 addons:
   sshknownhosts:
     - 142.93.48.135
-branches:
-  only:
-    - master
 env:
   global:
     - REMOTEAPPDIR=/var/www/MYDOMAIN.COM/
