@@ -4,7 +4,7 @@ const client = new Discord.Client()
 const warningList = []
 const whitelist = ['226034667160076290', '163852734230036480']
 
-const bannedPhrases = ['😂', '😹', '😳', '😅', '🤣', '😆']
+const bannedPhrases = ['😂', '😹', '😳', '😅', '🤣', '😆', 'omg']
 
 const punishedRole = '504680985867190274'
 
@@ -14,7 +14,7 @@ client.on('ready', () => {
 
 const filterMessage = msg => {
   bannedPhrases.map(phrase => {
-    if (msg.content.includes(phrase)) {
+    if (msg.content.toLowerCase().includes(phrase)) {
       msg.reply(
         `You have been punished for saying '${phrase}'. Your punishment will end in 5 minutes`
       )
