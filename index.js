@@ -5,5 +5,5 @@ const { port, token } = require('./src/constants')
 bot.login(token)
 
 server.listen(port, () => {
-  console.log('Server listening on port 80')
+  console.log(`Server listening on port ${port}`)
 })
