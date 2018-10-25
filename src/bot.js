@@ -13,7 +13,9 @@ const bannedPhrases = [
   '😆',
   'omg',
   'haha',
-  'babe'
+  'babe',
+  'b a b e',
+  'o m g'
 ]
 
 const punishedRole = '504680985867190274'
