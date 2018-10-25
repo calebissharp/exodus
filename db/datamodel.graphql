@@ -1,0 +1,19 @@
+enum Permission {
+  ADMIN
+  USER
+}
+
+type User {
+  id: ID! @unique
+  discordId: String!
+  username: String!
+  permissions: [Permission]
+  punished: Boolean @default(value: "false")
+  warned: Boolean @default(value: "false")
+}
+
+type BannedPhrase {
+  id: ID! @unique
+  phrase: String!
+  test: String!
+}

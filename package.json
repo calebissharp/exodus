@@ -9,12 +9,15 @@
     "test": "echo \"Error: no test specified\" && exit 0",
     "start": "pm2 start index.js -i 0 --name exodus",
     "restart": "pm2 reload exodus --update-env",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "deploy": "prisma deploy && prisma generate"
   },
   "dependencies": {
     "discord.js": "^11.4.2",
     "express": "^4.16.4",
-    "pm2": "^3.2.2"
+    "graphql": "0.13",
+    "pm2": "^3.2.2",
+    "prisma-client-lib": "^1.19.0"
   },
   "devDependencies": {
     "@twostoryrobot/prettier-config": "^2.0.1",
