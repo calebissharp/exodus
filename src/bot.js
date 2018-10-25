@@ -5,17 +5,54 @@ const warningList = []
 const whitelist = ['226034667160076290', '163852734230036480']
 
 const bannedPhrases = [
-  '😂',
-  '😹',
-  '😳',
-  '😅',
-  '🤣',
-  '😆',
-  'omg',
-  'haha',
-  'babe',
-  'b a b e',
-  'o m g'
+  {
+    test: /😂/g,
+    phrase: '😂'
+  },
+  {
+    test: /😹/g,
+    phrase: '😹'
+  },
+  {
+    test: /😳/g,
+    phrase: '😳'
+  },
+  {
+    test: /😅/g,
+    phrase: '😅'
+  },
+  {
+    test: /🤣/g,
+    phrase: '🤣'
+  },
+  {
+    test: /😆/g,
+    phrase: '😆'
+  },
+  {
+    test: /😜/g,
+    phrase: '😜'
+  },
+  {
+    test: /😝/g,
+    phrase: '😝'
+  },
+  {
+    test: /😛/g,
+    phrase: '😛'
+  },
+  {
+    test: /o\s*m\s*g/g,
+    phrase: 'omg'
+  },
+  {
+    test: /h\s*a\s*h\s*a/g,
+    phrase: 'haha'
+  },
+  {
+    test: /b\s*a\s*b\s*e/g,
+    phrase: 'babe'
+  }
 ]
 
 const punishedRole = '504680985867190274'
@@ -26,9 +63,11 @@ client.on('ready', () => {
 
 const filterMessage = msg => {
   bannedPhrases.map(phrase => {
-    if (msg.content.toLowerCase().includes(phrase)) {
+    if (phrase.test.test(msg.content)) {
       msg.reply(
-        `You have been punished for saying '${phrase}'. Your punishment will end in 1 minute`
+        `You have been punished for saying '${
+          phrase.phrase
+        }'. Your punishment will end in 1 minute`
       )
 
       warningList.push(msg.author)
