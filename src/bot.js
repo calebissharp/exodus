@@ -59,6 +59,10 @@ const punishedRole = '504680985867190274'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`)
+  client.user.setPresence({
+    status: 'online',
+    game: { name: 'WITH THE SOULS OF THE INNOCENT' }
+  })
 })
 
 const filterMessage = msg => {
