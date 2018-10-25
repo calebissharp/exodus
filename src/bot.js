@@ -26,7 +26,7 @@ const filterMessage = msg => {
   bannedPhrases.map(phrase => {
     if (msg.content.toLowerCase().includes(phrase)) {
       msg.reply(
-        `You have been punished for saying '${phrase}'. Your punishment will end in 5 minutes`
+        `You have been punished for saying '${phrase}'. Your punishment will end in 1 minute`
       )
 
       warningList.push(msg.author)
@@ -34,7 +34,7 @@ const filterMessage = msg => {
       setTimeout(() => {
         msg.member.removeRole(punishedRole)
         console.log(`Punished rank removed from ${msg.author.username}`)
-      }, 300000)
+      }, 60000)
     }
   })
 }
