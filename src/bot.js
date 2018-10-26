@@ -17,24 +17,24 @@ client.on('ready', () => {
 const filterMessage = async msg => {
   const bannedPhrases = await prisma.bannedPhrases()
 
-  bannedPhrases.map(phrase => {
-    const regex = new RegExp(phrase.test, 'gi')
+  const phrasesUsed = bannedPhrases
+    .filter(phrase => new RegExp(phrase.test, 'gi').test(msg.content))
+    .map(({ phrase }) => phrase)
 
-    if (regex.test(msg.content)) {
-      msg.reply(
-        `You have been punished for saying '${
-          phrase.phrase
-        }'. Your punishment will end in 1 minute`
-      )
+  if (phrasesUsed.length > 0) {
+    msg.reply(
+      `You have been punished for saying ${phrasesUsed.join(
+        ', '
+      )}. Your punishment will end in 1 minute`
+    )
 
-      warningList.push(msg.author)
-      msg.member.addRole(punishedRole)
-      setTimeout(() => {
-        msg.member.removeRole(punishedRole)
-        console.log(`Punished rank removed from ${msg.author.username}`)
-      }, 60000)
-    }
-  })
+    warningList.push(msg.author)
+    msg.member.addRole(punishedRole)
+    setTimeout(() => {
+      msg.member.removeRole(punishedRole)
+      console.log(`Punished rank removed from ${msg.author.username}`)
+    }, 60000)
+  }
 }
 
 const getOrCreateUser = async author => {
