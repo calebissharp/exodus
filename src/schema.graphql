@@ -3,6 +3,7 @@
 type Query {
   bannedPhrases(orderBy: BannedPhraseOrderByInput): [BannedPhrase!]!
   users: [User!]!
+  user(where: UserWhereUniqueInput!): User
 }
 
 type Mutation {
@@ -11,4 +12,6 @@ type Mutation {
     where: BannedPhraseWhereUniqueInput!
     data: BannedPhraseUpdateInput!
   ): BannedPhrase
+  deleteBannedPhrase(where: BannedPhraseWhereUniqueInput!): BannedPhrase
+  updatePermissions(id: ID!, permissions: [Permission]): User
 }
