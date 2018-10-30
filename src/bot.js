@@ -14,7 +14,7 @@ client.on('ready', () => {
   })
 })
 
-const filterMessage = async msg => {
+const filterMessage = async (msg, user) => {
   const bannedPhrases = await prisma.bannedPhrases()
 
   const phrasesUsed = bannedPhrases
@@ -30,8 +30,16 @@ const filterMessage = async msg => {
 
     warningList.push(msg.author)
     msg.member.addRole(punishedRole)
+    await prisma.updateUser({
+      where: { id: user.id},
+      data: { punished: true }
+    })
     setTimeout(() => {
       msg.member.removeRole(punishedRole)
+      await prisma.updateUser({
+        where: { id: user.id},
+        data: { punished: false }
+      })
       console.log(`Punished rank removed from ${msg.author.username}`)
     }, 60000)
   }
