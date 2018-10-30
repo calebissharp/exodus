@@ -1,9 +1,12 @@
-endpoint: https://us1.prisma.sh/caleb-sharp-362527/exodus/dev
+endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: db/datamodel.graphql
-
+secret: ${env:PRISMA_SECRET}
+hooks:
+  post-deploy:
+    - graphql get-schema -p prisma
+    - prisma generate
 generate:
   - generator: javascript-client
     output: ./db/generated/
-
 seed:
   run: node ./db/seed.js

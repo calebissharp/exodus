@@ -1,9 +1,17 @@
 const server = require('./src/server')
 const bot = require('./src/bot')
-const { port, token } = require('./src/constants')
+const { token } = require('./src/constants')
 
 bot.login(token)
 
-server.listen(port, () => {
-  console.log(`Server listening on port ${port}`)
-})
+server.start(
+  {
+    cors: {
+      credentials: true,
+      origin: process.env.FRONTEND_URL
+    }
+  },
+  details => {
+    console.log(`Server listening on port ${details.port}`)
+  }
+)

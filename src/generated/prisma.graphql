@@ -1,0 +1,636 @@
+# source: https://us1.prisma.sh/caleb-sharp-362527/exodus/dev
+# timestamp: Mon Oct 29 2018 20:26:59 GMT-0700 (Pacific Daylight Time)
+
+type AggregateBannedPhrase {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BannedPhrase implements Node {
+  id: ID!
+  phrase: String!
+  test: String!
+}
+
+"""A connection to a list of items."""
+type BannedPhraseConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [BannedPhraseEdge]!
+  aggregate: AggregateBannedPhrase!
+}
+
+input BannedPhraseCreateInput {
+  phrase: String!
+  test: String!
+}
+
+"""An edge in a connection."""
+type BannedPhraseEdge {
+  """The item at the end of the edge."""
+  node: BannedPhrase!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum BannedPhraseOrderByInput {
+  id_ASC
+  id_DESC
+  phrase_ASC
+  phrase_DESC
+  test_ASC
+  test_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type BannedPhrasePreviousValues {
+  id: ID!
+  phrase: String!
+  test: String!
+}
+
+type BannedPhraseSubscriptionPayload {
+  mutation: MutationType!
+  node: BannedPhrase
+  updatedFields: [String!]
+  previousValues: BannedPhrasePreviousValues
+}
+
+input BannedPhraseSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BannedPhraseSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BannedPhraseSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BannedPhraseSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: BannedPhraseWhereInput
+}
+
+input BannedPhraseUpdateInput {
+  phrase: String
+  test: String
+}
+
+input BannedPhraseUpdateManyMutationInput {
+  phrase: String
+  test: String
+}
+
+input BannedPhraseWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BannedPhraseWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BannedPhraseWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BannedPhraseWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  phrase: String
+
+  """All values that are not equal to given value."""
+  phrase_not: String
+
+  """All values that are contained in given list."""
+  phrase_in: [String!]
+
+  """All values that are not contained in given list."""
+  phrase_not_in: [String!]
+
+  """All values less than the given value."""
+  phrase_lt: String
+
+  """All values less than or equal the given value."""
+  phrase_lte: String
+
+  """All values greater than the given value."""
+  phrase_gt: String
+
+  """All values greater than or equal the given value."""
+  phrase_gte: String
+
+  """All values containing the given string."""
+  phrase_contains: String
+
+  """All values not containing the given string."""
+  phrase_not_contains: String
+
+  """All values starting with the given string."""
+  phrase_starts_with: String
+
+  """All values not starting with the given string."""
+  phrase_not_starts_with: String
+
+  """All values ending with the given string."""
+  phrase_ends_with: String
+
+  """All values not ending with the given string."""
+  phrase_not_ends_with: String
+  test: String
+
+  """All values that are not equal to given value."""
+  test_not: String
+
+  """All values that are contained in given list."""
+  test_in: [String!]
+
+  """All values that are not contained in given list."""
+  test_not_in: [String!]
+
+  """All values less than the given value."""
+  test_lt: String
+
+  """All values less than or equal the given value."""
+  test_lte: String
+
+  """All values greater than the given value."""
+  test_gt: String
+
+  """All values greater than or equal the given value."""
+  test_gte: String
+
+  """All values containing the given string."""
+  test_contains: String
+
+  """All values not containing the given string."""
+  test_not_contains: String
+
+  """All values starting with the given string."""
+  test_starts_with: String
+
+  """All values not starting with the given string."""
+  test_not_starts_with: String
+
+  """All values ending with the given string."""
+  test_ends_with: String
+
+  """All values not ending with the given string."""
+  test_not_ends_with: String
+}
+
+input BannedPhraseWhereUniqueInput {
+  id: ID
+}
+
+type BatchPayload {
+  """The number of nodes that have been affected by the Batch operation."""
+  count: Long!
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  createBannedPhrase(data: BannedPhraseCreateInput!): BannedPhrase!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateBannedPhrase(data: BannedPhraseUpdateInput!, where: BannedPhraseWhereUniqueInput!): BannedPhrase
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteBannedPhrase(where: BannedPhraseWhereUniqueInput!): BannedPhrase
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertBannedPhrase(where: BannedPhraseWhereUniqueInput!, create: BannedPhraseCreateInput!, update: BannedPhraseUpdateInput!): BannedPhrase!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyBannedPhrases(data: BannedPhraseUpdateManyMutationInput!, where: BannedPhraseWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyBannedPhrases(where: BannedPhraseWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+enum Permission {
+  ADMIN
+  USER
+}
+
+type Query {
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  bannedPhrases(where: BannedPhraseWhereInput, orderBy: BannedPhraseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BannedPhrase]!
+  user(where: UserWhereUniqueInput!): User
+  bannedPhrase(where: BannedPhraseWhereUniqueInput!): BannedPhrase
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  bannedPhrasesConnection(where: BannedPhraseWhereInput, orderBy: BannedPhraseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BannedPhraseConnection!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+type Subscription {
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  bannedPhrase(where: BannedPhraseSubscriptionWhereInput): BannedPhraseSubscriptionPayload
+}
+
+type User implements Node {
+  id: ID!
+  discordId: String!
+  username: String!
+  permissions: [Permission!]!
+  punished: Boolean
+  warned: Boolean
+  avatar: String
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  discordId: String!
+  username: String!
+  punished: Boolean
+  warned: Boolean
+  avatar: String
+  permissions: UserCreatepermissionsInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  discordId_ASC
+  discordId_DESC
+  username_ASC
+  username_DESC
+  punished_ASC
+  punished_DESC
+  warned_ASC
+  warned_DESC
+  avatar_ASC
+  avatar_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  discordId: String!
+  username: String!
+  permissions: [Permission!]!
+  punished: Boolean
+  warned: Boolean
+  avatar: String
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+}
+
+input UserUpdateInput {
+  discordId: String
+  username: String
+  punished: Boolean
+  warned: Boolean
+  avatar: String
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateManyMutationInput {
+  discordId: String
+  username: String
+  punished: Boolean
+  warned: Boolean
+  avatar: String
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  discordId: String
+
+  """All values that are not equal to given value."""
+  discordId_not: String
+
+  """All values that are contained in given list."""
+  discordId_in: [String!]
+
+  """All values that are not contained in given list."""
+  discordId_not_in: [String!]
+
+  """All values less than the given value."""
+  discordId_lt: String
+
+  """All values less than or equal the given value."""
+  discordId_lte: String
+
+  """All values greater than the given value."""
+  discordId_gt: String
+
+  """All values greater than or equal the given value."""
+  discordId_gte: String
+
+  """All values containing the given string."""
+  discordId_contains: String
+
+  """All values not containing the given string."""
+  discordId_not_contains: String
+
+  """All values starting with the given string."""
+  discordId_starts_with: String
+
+  """All values not starting with the given string."""
+  discordId_not_starts_with: String
+
+  """All values ending with the given string."""
+  discordId_ends_with: String
+
+  """All values not ending with the given string."""
+  discordId_not_ends_with: String
+  username: String
+
+  """All values that are not equal to given value."""
+  username_not: String
+
+  """All values that are contained in given list."""
+  username_in: [String!]
+
+  """All values that are not contained in given list."""
+  username_not_in: [String!]
+
+  """All values less than the given value."""
+  username_lt: String
+
+  """All values less than or equal the given value."""
+  username_lte: String
+
+  """All values greater than the given value."""
+  username_gt: String
+
+  """All values greater than or equal the given value."""
+  username_gte: String
+
+  """All values containing the given string."""
+  username_contains: String
+
+  """All values not containing the given string."""
+  username_not_contains: String
+
+  """All values starting with the given string."""
+  username_starts_with: String
+
+  """All values not starting with the given string."""
+  username_not_starts_with: String
+
+  """All values ending with the given string."""
+  username_ends_with: String
+
+  """All values not ending with the given string."""
+  username_not_ends_with: String
+  punished: Boolean
+
+  """All values that are not equal to given value."""
+  punished_not: Boolean
+  warned: Boolean
+
+  """All values that are not equal to given value."""
+  warned_not: Boolean
+  avatar: String
+
+  """All values that are not equal to given value."""
+  avatar_not: String
+
+  """All values that are contained in given list."""
+  avatar_in: [String!]
+
+  """All values that are not contained in given list."""
+  avatar_not_in: [String!]
+
+  """All values less than the given value."""
+  avatar_lt: String
+
+  """All values less than or equal the given value."""
+  avatar_lte: String
+
+  """All values greater than the given value."""
+  avatar_gt: String
+
+  """All values greater than or equal the given value."""
+  avatar_gte: String
+
+  """All values containing the given string."""
+  avatar_contains: String
+
+  """All values not containing the given string."""
+  avatar_not_contains: String
+
+  """All values starting with the given string."""
+  avatar_starts_with: String
+
+  """All values not starting with the given string."""
+  avatar_not_starts_with: String
+
+  """All values ending with the given string."""
+  avatar_ends_with: String
+
+  """All values not ending with the given string."""
+  avatar_not_ends_with: String
+}
+
+input UserWhereUniqueInput {
+  id: ID
+}

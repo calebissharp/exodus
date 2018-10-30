@@ -1,0 +1,14 @@
+# import * from './generated/prisma.graphql'
+
+type Query {
+  bannedPhrases(orderBy: BannedPhraseOrderByInput): [BannedPhrase!]!
+  users: [User!]!
+}
+
+type Mutation {
+  createBannedPhrase(data: BannedPhraseCreateInput!): BannedPhrase!
+  updateBannedPhrase(
+    where: BannedPhraseWhereUniqueInput!
+    data: BannedPhraseUpdateInput!
+  ): BannedPhrase
+}
