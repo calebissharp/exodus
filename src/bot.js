@@ -31,13 +31,13 @@ const filterMessage = async (msg, user) => {
     warningList.push(msg.author)
     msg.member.addRole(punishedRole)
     await prisma.updateUser({
-      where: { id: user.id},
+      where: { id: user.id },
       data: { punished: true }
     })
-    setTimeout(() => {
+    setTimeout(async () => {
       msg.member.removeRole(punishedRole)
       await prisma.updateUser({
-        where: { id: user.id},
+        where: { id: user.id },
         data: { punished: false }
       })
       console.log(`Punished rank removed from ${msg.author.username}`)

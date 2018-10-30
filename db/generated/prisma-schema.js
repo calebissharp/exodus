@@ -188,6 +188,7 @@ type User {
   permissions: [Permission!]!
   punished: Boolean
   warned: Boolean
+  avatar: String
 }
 
 type UserConnection {
@@ -202,6 +203,7 @@ input UserCreateInput {
   permissions: UserCreatepermissionsInput
   punished: Boolean
   warned: Boolean
+  avatar: String
 }
 
 input UserCreatepermissionsInput {
@@ -224,6 +226,8 @@ enum UserOrderByInput {
   punished_DESC
   warned_ASC
   warned_DESC
+  avatar_ASC
+  avatar_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -237,6 +241,7 @@ type UserPreviousValues {
   permissions: [Permission!]!
   punished: Boolean
   warned: Boolean
+  avatar: String
 }
 
 type UserSubscriptionPayload {
@@ -263,6 +268,7 @@ input UserUpdateInput {
   permissions: UserUpdatepermissionsInput
   punished: Boolean
   warned: Boolean
+  avatar: String
 }
 
 input UserUpdatepermissionsInput {
@@ -316,6 +322,20 @@ input UserWhereInput {
   punished_not: Boolean
   warned: Boolean
   warned_not: Boolean
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

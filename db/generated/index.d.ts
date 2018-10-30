@@ -168,6 +168,8 @@ export type UserOrderByInput =
   | "punished_DESC"
   | "warned_ASC"
   | "warned_DESC"
+  | "avatar_ASC"
+  | "avatar_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -286,6 +288,20 @@ export interface UserWhereInput {
   punished_not?: Boolean;
   warned?: Boolean;
   warned_not?: Boolean;
+  avatar?: String;
+  avatar_not?: String;
+  avatar_in?: String[] | String;
+  avatar_not_in?: String[] | String;
+  avatar_lt?: String;
+  avatar_lte?: String;
+  avatar_gt?: String;
+  avatar_gte?: String;
+  avatar_contains?: String;
+  avatar_not_contains?: String;
+  avatar_starts_with?: String;
+  avatar_not_starts_with?: String;
+  avatar_ends_with?: String;
+  avatar_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -319,6 +335,7 @@ export interface UserUpdateInput {
   permissions?: UserUpdatepermissionsInput;
   punished?: Boolean;
   warned?: Boolean;
+  avatar?: String;
 }
 
 export interface BannedPhraseUpdateInput {
@@ -332,6 +349,7 @@ export interface UserCreateInput {
   permissions?: UserCreatepermissionsInput;
   punished?: Boolean;
   warned?: Boolean;
+  avatar?: String;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -395,6 +413,7 @@ export interface UserPreviousValuesNode {
   permissions: Permission[];
   punished?: Boolean;
   warned?: Boolean;
+  avatar?: String;
 }
 
 export interface UserPreviousValues
@@ -406,6 +425,7 @@ export interface UserPreviousValues
   permissions: () => Promise<Permission[]>;
   punished: () => Promise<Boolean>;
   warned: () => Promise<Boolean>;
+  avatar: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -417,6 +437,7 @@ export interface UserPreviousValuesSubscription
   permissions: () => Promise<AsyncIterator<Permission[]>>;
   punished: () => Promise<AsyncIterator<Boolean>>;
   warned: () => Promise<AsyncIterator<Boolean>>;
+  avatar: () => Promise<AsyncIterator<String>>;
 }
 
 export interface BannedPhraseConnectionNode {}
@@ -521,6 +542,7 @@ export interface UserNode {
   permissions: Permission[];
   punished?: Boolean;
   warned?: Boolean;
+  avatar?: String;
 }
 
 export interface User extends Promise<UserNode>, Fragmentable {
@@ -530,6 +552,7 @@ export interface User extends Promise<UserNode>, Fragmentable {
   permissions: () => Promise<Permission[]>;
   punished: () => Promise<Boolean>;
   warned: () => Promise<Boolean>;
+  avatar: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -541,6 +564,7 @@ export interface UserSubscription
   permissions: () => Promise<AsyncIterator<Permission[]>>;
   punished: () => Promise<AsyncIterator<Boolean>>;
   warned: () => Promise<AsyncIterator<Boolean>>;
+  avatar: () => Promise<AsyncIterator<String>>;
 }
 
 export interface AggregateUserNode {
