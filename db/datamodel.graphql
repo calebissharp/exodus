@@ -10,6 +10,7 @@ type User {
   permissions: [Permission]
   punished: Boolean @default(value: "false")
   warned: Boolean @default(value: "false")
+  avatar: String
 }
 
 type BannedPhrase {

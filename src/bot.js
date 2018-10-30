@@ -55,7 +55,8 @@ const getOrCreateUser = async author => {
   console.log(`Creating new user for ${author.username}`)
   return prisma.createUser({
     username: author.username,
-    discordId: author.id
+    discordId: author.id,
+    avatar: author.avatarURL
   })
 }
 
