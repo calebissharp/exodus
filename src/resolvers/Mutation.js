@@ -7,7 +7,7 @@ const Mutations = {
   updateBannedPhrase: forwardTo('db'),
   deleteBannedPhrase: forwardTo('db'),
   async updatePermissions(parent, args, ctx, info) {
-    return ctx.db.mutation.updateUser(
+    const user = await ctx.db.mutation.updateUser(
       {
         where: { id: args.id },
         data: {
@@ -18,6 +18,16 @@ const Mutations = {
       },
       info
     )
+
+    const member = await ctx.bot.guilds.first().fetchMember(user.discordId)
+
+    if (args.permissions.includes('ADMIN')) {
+      // TODO: Add admin role here
+    } else {
+      // TODO: Remove admin role here
+    }
+
+    return user
   },
   async punish(parent, args, ctx, info) {
     const user = await ctx.db.query.user({ where: { id: args.id } })
