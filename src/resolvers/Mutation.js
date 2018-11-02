@@ -7,17 +7,14 @@ const Mutations = {
   updateBannedPhrase: forwardTo('db'),
   deleteBannedPhrase: forwardTo('db'),
   async updatePermissions(parent, args, ctx, info) {
-    const user = await ctx.db.mutation.updateUser(
-      {
-        where: { id: args.id },
-        data: {
-          permissions: {
-            set: args.permissions
-          }
+    const user = await ctx.db.mutation.updateUser({
+      where: { id: args.id },
+      data: {
+        permissions: {
+          set: args.permissions
         }
-      },
-      info
-    )
+      }
+    })
 
     const member = await ctx.bot.guilds.first().fetchMember(user.discordId)
 
