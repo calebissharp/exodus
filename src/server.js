@@ -6,6 +6,7 @@ require('dotenv').config({ path: 'variables.env' })
 const Mutation = require('./resolvers/Mutation')
 const Query = require('./resolvers/Query')
 const db = require('./db')
+const bot = require('./bot')
 const { addUrl } = require('./constants')
 
 const server = new GraphQLServer({
@@ -17,7 +18,7 @@ const server = new GraphQLServer({
   resolverValidationOptions: {
     requireResolversForResolveType: false
   },
-  context: req => ({ ...req, db })
+  context: req => ({ ...req, db, bot })
 })
 
 server.express.use(cookieParser())
