@@ -73,4 +73,26 @@ client.on('message', async msg => {
   filterMessage(msg, user)
 })
 
+client.on('guildMemberUpdate', async (oldMember, newMember) => {
+  const user = await getOrCreateUser(newMember.user)
+
+  // User now has punished role
+  if (oldMember.roles.has(punishedRole) && !newMember.roles.has(punishedRole)) {
+    await prisma.updateUser({
+      where: { id: user.id },
+      data: { punished: false }
+    })
+    console.log(`Punished role removed from ${user.username}`)
+  }
+
+  // User no longer has punished role
+  if (!oldMember.roles.has(punishedRole) && newMember.roles.has(punishedRole)) {
+    await prisma.updateUser({
+      where: { id: user.id },
+      data: { punished: true }
+    })
+    console.log(`Punished role given to ${user.username}`)
+  }
+})
+
 module.exports = client
