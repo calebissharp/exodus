@@ -24,7 +24,7 @@ const Mutations = {
       // TODO: Remove admin role here
     }
 
-    return user
+    return ctx.db.query.user({ where: { id: args.id } }, info)
   },
   async punish(parent, args, ctx, info) {
     const user = await ctx.db.query.user({ where: { id: args.id } })
