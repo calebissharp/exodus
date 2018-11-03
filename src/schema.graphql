@@ -15,6 +15,7 @@ type Mutation {
   deleteBannedPhrase(where: BannedPhraseWhereUniqueInput!): BannedPhrase
   updatePermissions(id: ID!, permissions: [Permission]): User
   punish(id: ID!): SuccessMessage
+  pardon(id: ID!): SuccessMessage
 }
 
 type SuccessMessage {

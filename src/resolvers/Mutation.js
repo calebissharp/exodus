@@ -51,6 +51,24 @@ const Mutations = {
     return {
       message: `Successfully punished ${user.username}.`
     }
+  },
+  async pardon(parent, args, ctx, info) {
+    const user = await ctx.db.query.user({ where: { id: args.id } })
+    if (!user) throw new Error('No user with that id found')
+
+    const member = await ctx.bot.guilds.first().fetchMember(user.discordId)
+
+    if (!member) throw new Error('User could not be found in guild')
+
+    member.removeRole(punishedRole)
+    await ctx.db.mutation.updateUser({
+      where: { id: user.id },
+      data: { punished: false }
+    })
+
+    return {
+      message: `Successfully pardoned ${user.username}.`
+    }
   }
 }
 
